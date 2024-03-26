@@ -24,6 +24,8 @@
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="4">
                             <Image.Source>
@@ -36,19 +38,21 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding ID}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
-                        <TextBlock Text="{Binding FullGender}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding ID, StringFormat={}ID: {0}}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Text="{Binding FullGender, StringFormat={}Пол: {0}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap">
-                            <TextBlock Text="{Binding LastName}"></TextBlock>
+                            <TextBlock Text="{Binding LastName, StringFormat={}ФИО: {0}}"></TextBlock>
                             <TextBlock Text="{Binding FirstName}"></TextBlock>
                             <TextBlock Text="{Binding Patronymic}"></TextBlock>
                         </TextBlock>
-                        <TextBlock Text="{Binding Birthday}" Grid.Column="1" Grid.Row="3" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Birthday,StringFormat={}Дата рождения: {0}}" Grid.Column="1" Grid.Row="3" FontSize="20"></TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="20">
-                            <TextBlock Text="{Binding Phone}"></TextBlock>
+                            <TextBlock Text="{Binding Phone, StringFormat={}Телефон и Email : {0}}"></TextBlock>
                             <TextBlock Text="{Binding Email}"></TextBlock>
                         </TextBlock>
-                        <TextBlock Text="{Binding RegistrationDate}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding RegistrationDate, StringFormat={}Дата добавления: {0}}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding LastArrival, StringFormat={}Дата последнего посещения: {0}}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding CountArrival, StringFormat={}Количество посещений: {0}}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
