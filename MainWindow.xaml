@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Akhmetova_language"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="resource/school_logo.ico" FontFamily="Comic Sans MS"
-        MinHeight="350" MinWidth="700">
+        Title="Языковая школа Ахметова" Height="450" Width="800" Icon="resource/school_logo.ico" 
+        FontFamily="Comic Sans MS" MinHeight="350" MinWidth="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>

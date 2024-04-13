@@ -21,7 +21,24 @@ namespace Akhmetova_language
             this.ClientService = new HashSet<ClientService>();
             this.Tag = new HashSet<Tag>();
         }
-        
+        public string BirthdayFormat
+        {
+            get
+            {
+
+                return Birthday.ToString();
+            }
+        }
+
+        public string RegistrationDateFormat
+        {
+            get
+            {
+
+                return RegistrationDate.ToShortDateString();
+            }
+        }
+
         public string FullGender
         {
             get
@@ -43,6 +60,7 @@ namespace Akhmetova_language
                 return ClientService.Count();
             }
         }
+
         public int ID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
