@@ -21,12 +21,37 @@ namespace Akhmetova_language
             this.ClientService = new HashSet<ClientService>();
             this.Tag = new HashSet<Tag>();
         }
+    
+        public int ID { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Patronymic { get; set; }
+        public int GenderCode { get; set; }
+        public string Phone { get; set; }
+        public string PhotoPath { get; set; }
+        public System.DateTime Birthday { get; set; }
+        public string Email { get; set; }
+        public System.DateTime RegistrationDate { get; set; }
+    
+        public virtual Gender Gender { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClientService> ClientService { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tag { get; set; }
+
+        public string FullGender
+        {
+            get
+            {
+                return Gender.Name;
+            }
+        }
         public string BirthdayFormat
         {
             get
             {
 
-                return Birthday.ToString();
+                return Birthday.ToShortDateString();
             }
         }
 
@@ -39,43 +64,22 @@ namespace Akhmetova_language
             }
         }
 
-        public string FullGender
+        public int CountArrival
         {
             get
             {
-                return Gender.Name;
+                return ClientService.Count;
             }
         }
         public string LastArrival
         {
             get
             {
-                return ClientService.ToList().OrderByDescending(p => p.StartTime).First().StartTime.ToShortDateString();
+                if (CountArrival == 0)
+                    return "Нет посещений";
+                else
+                    return ClientService.ToList().OrderByDescending(p => p.StartTime).First().StartTime.ToShortDateString();
             }
         }
-        public int CountArrival
-        {
-            get
-            {
-                return ClientService.Count();
-            }
-        }
-
-        public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Patronymic { get; set; }
-        public string GenderCode { get; set; }
-        public string Phone { get; set; }
-        public string PhotoPath { get; set; }
-        public Nullable<System.DateTime> Birthday { get; set; }
-        public string Email { get; set; }
-        public System.DateTime RegistrationDate { get; set; }
-    
-        public virtual Gender Gender { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientService> ClientService { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tag { get; set; }
     }
 }

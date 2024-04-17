@@ -60,11 +60,11 @@ namespace Akhmetova_language
 
             if (FiltrBox.SelectedIndex == 1)
             {
-                currentClient = currentClient.Where(p => p.GenderCode == "2").ToList();
+                currentClient = currentClient.Where(p => p.GenderCode == 2).ToList();
             }
             else if (FiltrBox.SelectedIndex == 2)
             {
-                currentClient = currentClient.Where(p => p.GenderCode == "1").ToList();
+                currentClient = currentClient.Where(p => p.GenderCode == 1).ToList();
             }
 
             currentClient = currentClient.Where(p => p.LastName.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.FirstName.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Patronymic.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Phone.Replace("+", "").Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").ToLower().Contains(TBoxSearch.Text.Replace("+", "").Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").ToLower())).ToList();
@@ -241,6 +241,25 @@ namespace Akhmetova_language
             else
             {
                 MessageBox.Show("Невозможно выполнить удаление, так как клиент посещал школу!");
+            }
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Client));
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(Visibility == Visibility.Visible)
+            {
+                Akhmetova_languageEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p=>p.Reload());
+                LanguageListView.ItemsSource = Akhmetova_languageEntities.GetContext().Client.ToList();
             }
         }
     }

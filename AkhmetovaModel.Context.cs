@@ -15,12 +15,12 @@ namespace Akhmetova_language
     
     public partial class Akhmetova_languageEntities : DbContext
     {
-        private static Akhmetova_languageEntities context;
+        private static Akhmetova_languageEntities _context;
         public static Akhmetova_languageEntities GetContext()
         {
-            if (context == null)
-                context = new Akhmetova_languageEntities();
-            return context;
+            if(_context == null )
+                _context= new Akhmetova_languageEntities();
+            return _context;
         }
         public Akhmetova_languageEntities()
             : base("name=Akhmetova_languageEntities")

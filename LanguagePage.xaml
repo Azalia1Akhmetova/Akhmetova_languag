@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Akhmetova_language"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LanguagePage" FontFamily="Comic Sans MS">
+      Title="LanguagePage" FontFamily="Comic Sans MS" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,45 +21,48 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">
-            <TextBlock Text="Введите название для поиска" FontSize="20"/>
-            <TextBlock Text="Выберите пол для фильтра" FontSize="20"/>
+            <TextBlock Text="Введите ФИО, email или телефон для поиска" FontSize="15"/>
+            <TextBlock Text="Выберите пол для фильтра" FontSize="15"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
-            <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" FontSize="20"/>
-            <ComboBox Name="FiltrBox" Width="275" SelectionChanged="FiltrBox_SelectionChanged" FontSize="20">
-                <TextBlock Text="Все" FontSize="20"/>
-                <TextBlock Text="Женский" FontSize="20"/>
-                <TextBlock Text="Мужской" FontSize="20"/>
+            <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" FontSize="15"/>
+            <ComboBox Name="FiltrBox" Width="275" SelectionChanged="FiltrBox_SelectionChanged" FontSize="15">
+                <TextBlock Text="Все" FontSize="15"/>
+                <TextBlock Text="Женский" FontSize="15"/>
+                <TextBlock Text="Мужской" FontSize="15"/>
             </ComboBox>
         </StackPanel>
+        
         <StackPanel Orientation="Vertical" Grid.Row="0"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <ComboBox Name="SortBox" Width="275" SelectionChanged="SortBox_SelectionChanged" FontSize="20">
+            <ComboBox Name="SortBox" Width="275" SelectionChanged="SortBox_SelectionChanged" FontSize="15">
                 <TextBlock>По умолчанию</TextBlock>
                 <TextBlock>От А до Я</TextBlock>
                 <TextBlock>по дате последнего посещения</TextBlock>
                 <TextBlock>по количеству посещений</TextBlock>
             </ComboBox>
+            <Button Name="BtnAdd" Content="Добавить" Click="BtnAdd_Click" Margin="10"/>
         </StackPanel>
+        
         <ListView Name="LanguageListView" Grid.ColumnSpan="3" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Width="200" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="6">
+                        <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="6">
                             <Image.Source>
                                 <Binding Path="PhotoPath">
                                     <Binding.TargetNullValue>
@@ -70,46 +73,51 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding ID, StringFormat={}ID: {0}}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
-                        <TextBlock Text="{Binding FullGender, StringFormat={}Пол: {0}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap">
+                        <TextBlock Text="{Binding ID, StringFormat={}ID: {0}}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Text="{Binding FullGender, StringFormat={}Пол: {0}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="15"></TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap">
                             <TextBlock Text="{Binding LastName, StringFormat={}ФИО: {0}}"></TextBlock>
                             <TextBlock Text="{Binding FirstName}"></TextBlock>
                             <TextBlock Text="{Binding Patronymic}"></TextBlock>
                         </TextBlock>
-                        <TextBlock Text="{Binding BirthdayFormat,StringFormat={}Дата рождения: {0}}" Grid.Column="1" Grid.Row="3" FontSize="20"></TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="20">
+                        <TextBlock Text="{Binding BirthdayFormat,StringFormat={}Дата рождения: {0}}" Grid.Column="1" Grid.Row="3" FontSize="15"></TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15">
                             <TextBlock Text="{Binding Phone, StringFormat={}Телефон и Email : {0}}"></TextBlock>
                             <TextBlock Text="{Binding Email}"></TextBlock>
                         </TextBlock>
-                        <TextBlock Text="{Binding RegistrationDateFormat, StringFormat={}Дата добавления: {0}}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding LastArrival, StringFormat={}Дата последнего посещения: {0}}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding CountArrival, StringFormat={}Количество посещений: {0}}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <Button Name="BtnDelete" Content="Удалить" Click="BtnDelete_Click"  Grid.Column="3" Grid.Row="8"/>
+                        <TextBlock Text="{Binding RegistrationDateFormat, StringFormat={}Дата добавления: {0}}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding LastArrival, StringFormat={}Дата последнего посещения: {0}}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding CountArrival, StringFormat={}Количество посещений: {0}}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" FontSize="15"></TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="8">
+                            
+                            <Button Name="BtnDelete" Content="Удалить" Click="BtnDelete_Click" Margin="10"/>
+                            <Button Name="BtnEdit" Content="Редактировать" Click="BtnEdit_Click" Margin="10"/>
+                        </StackPanel>
+                        
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3">
-            <TextBlock Text="Выводить по " FontSize="20"/>
-            <ComboBox Name="strCount" Width="100" SelectionChanged="strCount_SelectionChanged" FontSize="20">
+            <TextBlock Text="Выводить по " FontSize="15"/>
+            <ComboBox Name="strCount" Width="100" SelectionChanged="strCount_SelectionChanged" FontSize="15">
                 <TextBlock>10</TextBlock>
                 <TextBlock>50</TextBlock>
                 <TextBlock>200</TextBlock>
                 <TextBlock>Все</TextBlock>
             </ComboBox>
-            <TextBlock Name="TBCount" FontSize="20" VerticalAlignment="Center" Height="25"></TextBlock>
-            <TextBlock Text=" из " VerticalAlignment="Center" FontSize="20"/>
-            <TextBlock Name="TBAllRecords" FontSize="20" VerticalAlignment="Center" Height="25"></TextBlock>
-            <Button Name="LeftDirButton" Content="&lt;" Width="30" Height="30" Click="LeftDirButton_Click" FontSize="20"></Button>
-            <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp">
+            <TextBlock Name="TBCount" FontSize="15" VerticalAlignment="Center" Height="25"></TextBlock>
+            <TextBlock Text=" из " VerticalAlignment="Center" FontSize="15"/>
+            <TextBlock Name="TBAllRecords" FontSize="15" VerticalAlignment="Center" Height="25"></TextBlock>
+            <Button Name="LeftDirButton" Content="&lt;" Width="30" Height="30" Click="LeftDirButton_Click" FontSize="15"></Button>
+            <ListBox FontSize="15" Name="PageListBox" MouseUp="PageListBox_MouseUp">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
             </ListBox>
-            <Button Name="RightDirButton" Content="&gt;" Width="30" Height="30" Click="RightDirButton_Click" FontSize="20"/>
+            <Button Name="RightDirButton" Content="&gt;" Width="30" Height="30" Click="RightDirButton_Click" FontSize="15"/>
         </StackPanel>
     </Grid>
 </Page>
