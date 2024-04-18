@@ -261,6 +261,7 @@ namespace Akhmetova_language
                 Akhmetova_languageEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p=>p.Reload());
                 LanguageListView.ItemsSource = Akhmetova_languageEntities.GetContext().Client.ToList();
             }
+            Update();
         }
     }
 }

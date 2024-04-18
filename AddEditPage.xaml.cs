@@ -90,20 +90,13 @@ namespace Akhmetova_language
                     errors.AppendLine("Укажите корректный email клиента");
             }
             if (ComboType.SelectedItem == null)
-                errors.AppendLine("Укажите тип агента");
+                errors.AppendLine("Укажите пол");
             else
             {
-                var currentType = (TextBlock)ComboType.SelectedItem;
-                string currentTypeContent = currentType.Text;
-                foreach (Gender type in GenderTypes)
-                {
-                    if (type.Name.ToString() == currentTypeContent)
-                    {
-                        _currentLanguage.Gender = type;
-                        _currentLanguage.GenderCode = type.Code;
-                        break;
-                    }
-                }
+                if (ComboType.SelectedIndex == 0) _currentLanguage.GenderCode = 1;
+                else _currentLanguage.GenderCode = 2;
+
+
             }
 
             if (errors.Length > 0)
